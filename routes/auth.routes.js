@@ -10,11 +10,11 @@ const {
   logout,
   protect,
 } = require("../controller/auth.service");
-// TODO:  add some validation to auth route
 
-router.post("/signup", signup);
+const { loginValidator, signupValidator } = require("../utils/validation/auth");
+router.post("/signup", signupValidator, signup);
 router.get("/verify", varifyMagicLink);
-router.post("/login", login);
+router.post("/login", loginValidator, login);
 router.post("/forgotPassword", forgetPassword);
 router.post("/verifyResetCode", verifyPassResetCode);
 router.patch("/resetPassword", resetPassword);
