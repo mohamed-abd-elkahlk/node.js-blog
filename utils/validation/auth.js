@@ -1,6 +1,6 @@
 const { check } = require("express-validator");
 const validatorMiddleware = require("../../middlewares/validator.js");
-const User = require("../../modules/user.moudle.js");
+const User = require("../../modules/user.module.js");
 
 exports.signupValidator = [
   check("name")

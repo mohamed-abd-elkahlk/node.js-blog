@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+const passport = require("passport");
 const {
   forgetPassword,
   login,
@@ -18,7 +19,13 @@ router.post("/login", loginValidator, login);
 router.post("/forgotPassword", forgetPassword);
 router.post("/verifyResetCode", verifyPassResetCode);
 router.patch("/resetPassword", resetPassword);
-router.use(protect);
+router.use(
+  passport.authenticate("jwt", {
+    session: false,
+    ignoreExpiration: false,
+    userProperty: "user",
+  })
+);
 router.post("/logout", logout);
 
 module.exports = router;

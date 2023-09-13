@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 const asyncHandler = require("express-async-handler");
-const User = require("../modules/user.moudle");
-const ApiError = require("../utils/utils");
+const User = require("../modules/user.module");
+const { ApiError } = require("../utils/utils");
 
 const {
   issueJwt,
@@ -108,18 +108,9 @@ const login = asyncHandler(async (req, res, next) => {
 
 const protect = asyncHandler(async (req, res, next) => {
   const token = varifyToken(req.cookies.jwt);
-  if (Date.now() > token.exp) {
-    return next(new ApiError("token expired try to login", 401));
-  }
   const currunUser = await User.findById(token.sub);
-
   if (!currunUser) {
-    return next(
-      new ApiError(
-        "The user that belong to this token does no longer exist",
-        401
-      )
-    );
+    return next(new ApiError("User not found", 401));
   }
 
   req.user = currunUser;
@@ -155,7 +146,8 @@ const forgetPassword = asyncHandler(async (req, res, next) => {
 
   await user.save();
 
-  const message = ` <html lang="en">
+  const message = `
+  <html lang="en">
 
   <head>
       <meta charset="UTF-8">

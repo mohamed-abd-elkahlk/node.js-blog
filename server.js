@@ -3,8 +3,9 @@ const app = express();
 const dbConnction = require("./config/db");
 const morgan = require("morgan");
 const globalError = require("./middlewares/Error");
-
+const passport = require("passport");
 const cookieParser = require("cookie-parser");
+const { ApiError } = require("./utils/utils");
 
 // dbconnction
 dbConnction();
@@ -13,11 +14,18 @@ require("dotenv").config({
   path: "./.env/config.env",
 });
 // middleware
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 if (process.env.NODE_ENV === "devlopment") {
   app.use(morgan("dev"));
 }
+
 app.use(cookieParser());
+
+passport.use(require("./config/passport"));
+app.use(passport.initialize());
 
 // routes
 const routes = require("./routes");
