@@ -30,6 +30,7 @@ app.use(passport.initialize());
 // routes
 const routes = require("./routes");
 app.use("/api", routes);
+app.use(express.static("./uploads"));
 // routes that are not found in app
 
 app.all("*", (req, res, next) => {
