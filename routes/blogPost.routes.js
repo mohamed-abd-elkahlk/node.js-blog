@@ -34,9 +34,8 @@ router.use(
     session: false,
     ignoreExpiration: false,
     userProperty: "user",
-  })
-  // protect,
-  // allowedTo("user")
+  }),
+  allowedTo("user")
 );
 
 router.route("/create").post(createBlogPostValidator, createBlogPost);

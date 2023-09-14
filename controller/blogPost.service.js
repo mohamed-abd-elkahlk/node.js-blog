@@ -43,7 +43,21 @@ exports.createBlogPost = asyncHandler(async (req, res, next) => {
 
 exports.updateBlogPost = factory.updateOne(BlogPost);
 
-exports.deleteBlogPost = factory.deleteOne(BlogPost);
+exports.deleteBlogPost = asyncHandler(async (req, res, next) => {
+  req.body.author = req.user._id;
+  const { id } = req.params;
+  const blogpost = await BlogPost.findByIdAndDelete(id);
+
+  if (!blogpost) {
+    return next(new ApiError(`no blog post with this id: ${id}`, 404));
+  }
+
+  const user = await User.findByIdAndUpdate(req.user._id, {
+    $pull: { posts: id },
+  });
+
+  res.status(204).send();
+});
 
 exports.getOneBlogPost = factory.getOne(BlogPost);
 

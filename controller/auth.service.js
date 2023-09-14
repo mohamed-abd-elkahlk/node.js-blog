@@ -106,18 +106,6 @@ const login = asyncHandler(async (req, res, next) => {
     .json({ data: user });
 });
 
-const protect = asyncHandler(async (req, res, next) => {
-  const token = varifyToken(req.cookies.jwt);
-  const currunUser = await User.findById(token.sub);
-  if (!currunUser) {
-    return next(new ApiError("User not found", 401));
-  }
-
-  req.user = currunUser;
-
-  next();
-});
-
 const allowedTo = (...roles) =>
   asyncHandler(async (req, res, next) => {
     if (!roles.includes(req.user.role)) {
@@ -245,7 +233,6 @@ module.exports = {
   signup,
   varifyMagicLink,
   login,
-  protect,
   allowedTo,
   forgetPassword,
   verifyPassResetCode,

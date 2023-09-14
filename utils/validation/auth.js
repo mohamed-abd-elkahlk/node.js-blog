@@ -7,12 +7,7 @@ exports.signupValidator = [
     .notEmpty()
     .withMessage("User required")
     .isLength({ min: 3 })
-    .withMessage("Too short User name")
-    .custom((val, { req }) => {
-      req.body.slug = slugify(val);
-      return true;
-    }),
-
+    .withMessage("Too short User name"),
   check("email")
     .notEmpty()
     .withMessage("Email required")
