@@ -31,7 +31,7 @@ router
       userProperty: "user",
     }),
     setBlogPostIdAndUserIdToBody,
-    // allowedTo("user"),
+    allowedTo("user"),
     createReviewValidator,
     createReview
   );

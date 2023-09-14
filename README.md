@@ -1,6 +1,6 @@
 # blog using nodejs
 
-to start the project you nead to add `.env` folder and add _config.env_ file have this configrateion 
+to start the project you nead to add `.env` folder and add _config.env_ file have this configrateion .
 
 ```sh
     NODE_ENV="devlopment"
