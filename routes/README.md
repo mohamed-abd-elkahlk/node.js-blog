@@ -28,9 +28,9 @@ these routes have some difference  from the above routes, the above routes the n
 |`/api/user/change/Password` |  this route for change the loged user data |(user/admin)|
 |`/api/user/update`| this route is used for update user data like name etc |(user/admin)|
 |`/api/user/delete`| this route for disaple the  user not delete it from database ! |(user/admin)|
-|`/api/user/changePassword`/:id|this route  used for change the user password|(admin)|
+|`/api/user/changePassword/:id`|this route  used for change the user password|(admin)|
 |`/api/user/admin`|this route  used for get all users|(admin)|
-|`/api/user/admin`/:id|this route  used for get or update and delete spcifc user from the database|(admin)|
+|`/api/user/admin/:id`|this route  used for get or update and delete spcifc user from the database|(admin)|
 
 ## category  routes
 
