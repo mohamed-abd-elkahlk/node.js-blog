@@ -1,4 +1,5 @@
 const multer = require("multer");
+const { ApiError } = require("../utils/utils");
 
 const multeroOprions = () => {
   const muletrStorge = multer.memoryStorage();

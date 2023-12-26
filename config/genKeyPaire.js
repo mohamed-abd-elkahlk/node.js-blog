@@ -17,5 +17,5 @@ const genKeys = crypto.generateKeyPairSync("rsa", {
 const puplicKeyPath = path.join(__dirname, "../.env/id_rsa_pup.pem");
 const privteKeyPath = path.join(__dirname, "../.env/id_rsa_priv.pem");
 
-fs.writeFileSync(puplicKeyPath, genKeys.publicKey);
+fs.writeFileSync(puplicKeyPath, genKeys.publicKey, "utf-8");
 fs.writeFileSync(privteKeyPath, genKeys.privateKey);
